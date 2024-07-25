@@ -28,6 +28,11 @@ public class ENgCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("engcpotions")) {
+            if (!sender.hasPermission("engcpotions.give")) {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                return true;
+            }
+
             if (args.length < 4) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.usage")));
                 return true;
