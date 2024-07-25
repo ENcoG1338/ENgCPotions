@@ -1,0 +1,8 @@
+name: ENgCPotions
+version: '${project.version}'
+main: spigot.encog.cpotions.engcpotions.ENgCPotions
+api-version: '1.16'
+authors: [ encog ]
+commands:
+  engcpotions:
+    description: Зелья
