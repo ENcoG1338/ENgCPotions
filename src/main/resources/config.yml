@@ -60,3 +60,4 @@ messages:
   invalid_amount: "&cСумма должна быть числом."
   potion_not_found: "&cЗелье не найдено в конфиге"
   give_success: "&a{potion} выдано {player} в количестве {amount} шт."
+  no_permission: "&cУ вас не достаточно прав на выполнение этой команды."
