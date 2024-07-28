@@ -28,12 +28,34 @@ public class ENgCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("engcpotions")) {
+            if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                if (!sender.hasPermission("engcpotions.reload")) {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                    return true;
+                }
+                plugin.reloadConfig();
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.reload_success")));
+                return true;
+            }
+
+            if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
+                if (!sender.hasPermission("engcpotions.help")) {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                    return true;
+                }
+                List<String> helpMessages = plugin.getConfig().getStringList("messages.help");
+                for (String message : helpMessages) {
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                }
+                return true;
+            }
+
             if (!sender.hasPermission("engcpotions.give")) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
                 return true;
             }
 
-            if (args.length < 4) {
+            if (args.length < 5) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.usage")));
                 return true;
             }
@@ -45,9 +67,10 @@ public class ENgCommand implements CommandExecutor {
             }
 
             String potionName = args[2];
+            String potionType = args[3];
             int amount;
             try {
-                amount = Integer.parseInt(args[3]);
+                amount = Integer.parseInt(args[4]);
             } catch (NumberFormatException e) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.invalid_amount")));
                 return true;
@@ -59,7 +82,20 @@ public class ENgCommand implements CommandExecutor {
                 return true;
             }
 
-            ItemStack potion = new ItemStack(Material.POTION, amount);
+            Material potionMaterial;
+            switch (potionType.toLowerCase()) {
+                case "explosive":
+                    potionMaterial = Material.SPLASH_POTION;
+                    break;
+                case "mist":
+                    potionMaterial = Material.LINGERING_POTION;
+                    break;
+                default:
+                    potionMaterial = Material.POTION;
+                    break;
+            }
+
+            ItemStack potion = new ItemStack(potionMaterial, amount);
             PotionMeta meta = (PotionMeta) potion.getItemMeta();
             meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("potions." + potionName + ".name")));
             List<String> lore = new ArrayList<>();
