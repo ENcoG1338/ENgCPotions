@@ -55,9 +55,18 @@ potions:
     color: "FFFF00"
 # Сообщения
 messages:
-  usage: "&6/engcpotions give <player> <potion_name> <amount>"
+  help:
+    - ""
+    - "&f=== &6ENgCPotions Help &f==="
+    - "&6/engcpotions give <ник игрока> <название зелья> <тип зелья> <количество> &7- &fВыдать зелье игроку"
+    - "&6/engcpotions reload &7- &fПерезагрузить конфигурацию плагина"
+    - "&6/engcpotions help &7- &fПоказать это сообщение"
+    - "&f=== &6ENgCPotions Help &f==="
+    - ""
+  usage: "&fНеизвестная команда! Используйте &6/engcpotions help"
   player_not_found: "&cИгрок не найден."
   invalid_amount: "&cСумма должна быть числом."
   potion_not_found: "&cЗелье не найдено в конфиге"
   give_success: "&a{potion} выдано {player} в количестве {amount} шт."
   no_permission: "&cУ вас не достаточно прав на выполнение этой команды."
+  reload_success: "&aКонфигурация плагина успешно перезагружена."
