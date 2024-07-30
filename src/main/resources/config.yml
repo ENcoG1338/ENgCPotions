@@ -20,22 +20,22 @@ potions:
     color: "FF0000"
 
   strength_potion:
-    name: "&cЗелье Силача"
+    name: "§cЗелье Силача"
     description:
       - ""
-      - "&fЭто зелье силача,"
-      - "&fвыпей и стань силачом!"
+      - "§fЭто зелье силача,"
+      - "§fвыпей и стань силачом!"
       - ""
     effects:
       - INCREASE_DAMAGE:100:1
     color: "00FF00"
 
   healing_potion:
-    name: "&bЗелье Лекаря"
+    name: "&#15B1D9З&#23B7DCе&#31BDE0л&#3EC3E3ь&#4CC9E6е &#68D5EDЛ&#76DBF0е&#84E1F3к&#91E7F6а&#9FEDFAр&#ADF3FDя"
     description:
       - ""
-      - "&fЭто зелье лекаря,"
-      - "&fвыпей и вылечись!"
+      - "&#BAD1D7Э&#B9D3D9т&#B8D5DCо &#B7DAE1з&#B6DCE3е&#B5DEE5л&#B4E0E8ь&#B4E2EAе &#B2E6EFл&#B1E8F1е&#B0EBF4к&#AFEDF6а&#AFEFF8р&#AEF1FBя&#ADF3FD,"
+      - "&#BAD1D7в&#B5D0D7ы&#B0D0D7п&#ABCFD7е&#A7CFD7й &#9DCED7и &#93CDD7в&#8ECCD6ы&#89CBD6л&#84CBD6е&#80CAD6ч&#7BCAD6и&#76C9D6с&#71C9D6ь&#6CC8D6!"
       - ""
     effects:
       - HEAL:1:1
@@ -54,19 +54,4 @@ potions:
       - REGENERATION:600:1
     color: "FFFF00"
 # Сообщения
-messages:
-  help:
-    - ""
-    - "&f=== &6ENgCPotions Help &f==="
-    - "&6/engcpotions give <ник игрока> <название зелья> <тип зелья> <количество> &7- &fВыдать зелье игроку"
-    - "&6/engcpotions reload &7- &fПерезагрузить конфигурацию плагина"
-    - "&6/engcpotions help &7- &fПоказать это сообщение"
-    - "&f=== &6ENgCPotions Help &f==="
-    - ""
-  usage: "&fНеизвестная команда! Используйте &6/engcpotions help"
-  player_not_found: "&cИгрок не найден."
-  invalid_amount: "&cСумма должна быть числом."
-  potion_not_found: "&cЗелье не найдено в конфиге"
-  give_success: "&a{potion} выдано {player} в количестве {amount} шт."
-  no_permission: "&cУ вас не достаточно прав на выполнение этой команды."
-  reload_success: "&aКонфигурация плагина успешно перезагружена."
+locale: ru # en

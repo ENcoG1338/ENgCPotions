@@ -1,0 +1,24 @@
+#
+# ██████╗░██╗░░░██╗  ███████╗███╗░░██╗░█████╗░░█████╗░░██████╗░
+# ██╔══██╗╚██╗░██╔╝  ██╔════╝████╗░██║██╔══██╗██╔══██╗██╔════╝░
+# ██████╦╝░╚████╔╝░  █████╗░░██╔██╗██║██║░░╚═╝██║░░██║██║░░██╗░
+# ██╔══██╗░░╚██╔╝░░  ██╔══╝░░██║╚████║██║░░██╗██║░░██║██║░░╚██╗
+# ██████╦╝░░░██║░░░  ███████╗██║░╚███║╚█████╔╝╚█████╔╝╚██████╔╝
+# ╚═════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░╚════╝░░╚════╝░░╚═════╝░
+# Сообщения
+messages:
+  help:
+    - ""
+    - "&f=== &6ENgCPotions Help &f==="
+    - "&6/engcpotions give <player name> <potion name> <potion type> <amount> &7- &fGive potion to player"
+    - "&6/engcpotions reload &7- &fReload plugin configuration"
+    - "&6/engcpotions help &7- &fShow this message"
+    - "&f=== &6ENgCPotions Help &f==="
+    - ""
+  usage: "&7[&6ENGcPotions&7] &fUnknown command! Use &6/engcpotions help"
+  player_not_found: "&7[&6ENGcPotions&7] &cPlayer not found."
+  invalid_amount: "&7[&6ENGcPotions&7] &cAmount must be a number."
+  potion_not_found: "&7[&6ENGcPotions&7] &cPotion not found in config"
+  give_success: "&7[&6ENGcPotions&7] &a{potion} given to {player} in amount of {amount} pcs."
+  no_permission: "&7[&6ENGcPotions&7] &cYou do not have permission to execute this command."
+  reload_success: "&7[&6ENGcPotions&7] &aPlugin configuration successfully reloaded."
