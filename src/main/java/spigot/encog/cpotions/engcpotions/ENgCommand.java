@@ -28,41 +28,44 @@ public class ENgCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("engcpotions")) {
+            FileConfiguration messages = plugin.getMessages();
+
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 if (!sender.hasPermission("engcpotions.reload")) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                    sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.no_permission")));
                     return true;
                 }
                 plugin.reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.reload_success")));
+                plugin.loadMessages();
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.reload_success")));
                 return true;
             }
 
             if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
                 if (!sender.hasPermission("engcpotions.help")) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                    sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.no_permission")));
                     return true;
                 }
-                List<String> helpMessages = plugin.getConfig().getStringList("messages.help");
+                List<String> helpMessages = messages.getStringList("messages.help");
                 for (String message : helpMessages) {
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+                    sender.sendMessage(ENgColorUtil.translateHexColorCodes(message));
                 }
                 return true;
             }
 
             if (!sender.hasPermission("engcpotions.give")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no_permission")));
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.no_permission")));
                 return true;
             }
 
             if (args.length < 5) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.usage")));
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.usage")));
                 return true;
             }
 
             Player target = Bukkit.getPlayer(args[1]);
             if (target == null) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.player_not_found")));
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.player_not_found")));
                 return true;
             }
 
@@ -72,13 +75,13 @@ public class ENgCommand implements CommandExecutor {
             try {
                 amount = Integer.parseInt(args[4]);
             } catch (NumberFormatException e) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.invalid_amount")));
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.invalid_amount")));
                 return true;
             }
 
             FileConfiguration config = plugin.getConfig();
             if (!config.contains("potions." + potionName)) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.potion_not_found")));
+                sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.potion_not_found")));
                 return true;
             }
 
@@ -97,10 +100,10 @@ public class ENgCommand implements CommandExecutor {
 
             ItemStack potion = new ItemStack(potionMaterial, amount);
             PotionMeta meta = (PotionMeta) potion.getItemMeta();
-            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', config.getString("potions." + potionName + ".name")));
+            meta.setDisplayName(ENgColorUtil.translateHexColorCodes(config.getString("potions." + potionName + ".name")));
             List<String> lore = new ArrayList<>();
             for (String line : config.getStringList("potions." + potionName + ".description")) {
-                lore.add(ChatColor.translateAlternateColorCodes('&', line));
+                lore.add(ENgColorUtil.translateHexColorCodes(line));
             }
             meta.setLore(lore);
 
@@ -121,7 +124,7 @@ public class ENgCommand implements CommandExecutor {
             potion.setItemMeta(meta);
             target.getInventory().addItem(potion);
 
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.give_success")
+            sender.sendMessage(ENgColorUtil.translateHexColorCodes(messages.getString("messages.give_success")
                     .replace("{amount}", String.valueOf(amount))
                     .replace("{potion}", potionName)
                     .replace("{player}", target.getName())));
